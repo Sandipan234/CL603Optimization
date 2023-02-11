@@ -39,6 +39,7 @@ if no_input_error:
             e[i] = 1  # setting the ith row to 1 for perturbation of the ith term
             gradient_value = (func(b + h * e) - func(b - h * e)) / (2 * h)  # calculating the ith partial derivative
             gradient = np.append(gradient, gradient_value)
+            gradient = np.array([gradient]).T
         return gradient
 
 
@@ -64,7 +65,7 @@ if no_input_error:
                         b - del_x * ei + del_x * ej) - func(b + del_x * ei - del_x * ej)) / (
                                    4 * del_x * del_x)  # calculating the off-diagonal value
                     hessian[i][j] = calc
-
+        hessian = np.array([hessian]).T
         return hessian
 
 
